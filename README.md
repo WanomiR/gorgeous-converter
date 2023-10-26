@@ -28,7 +28,7 @@ App installation instructions for Mac with M1.
     pip install wheel numpy cython
     pip install .
     ```
-5. Remove rawpy directory after completing installation.
+5. Remove rawpy directory after installation is finished.
     ```bash
    cd ../ && rm -rf rawpy/
    ```
