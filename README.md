@@ -4,7 +4,7 @@ The best raw photo converter you have ever known.
 
 ### App instructions
 App installation instructions for Mac with M1.
-1. Download project files.
+1. Download the project files.
     ```bash
    git clone https://github.com/WanomiR/gorgeous-converter
    ```
