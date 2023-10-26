@@ -4,8 +4,11 @@ The best raw photo converter you have ever known.
 
 ### App instructions
 App installation instructions for Mac with M1.
-1. Install Python in case you don't have it already. 
-3. Open the project's root directory and create a virtual environment.
+1. Download project files.
+    ```bash
+   git clone https://github.com/WanomiR/gorgeous-converter
+   ```
+2. Open the project's root directory and create a virtual environment.
 	```bash
 	python3.10 -m venv venv
 	```
@@ -18,9 +21,6 @@ App installation instructions for Mac with M1.
 4. Install rawpy from the source.
     ```bash
     brew install llvm
-    cd /opt/homebrew/opt/libomp/lib
-
-    cd /usr/local/lib
     sudo ln -s /opt/homebrew/opt/libomp/lib/libomp.dylib libomp.dylib
 
     git clone https://github.com/letmaik/rawpy
