@@ -1,5 +1,6 @@
 *.nef
 *.cr3
+*.npy
 
 .idea
 .vscode
