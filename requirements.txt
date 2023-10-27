@@ -1,6 +1,7 @@
-numpy==1.23.2
+numpy
 streamlit
 colour-science
 matplotlib
 pillow
 opencv-python
+jupyterlab

@@ -20,7 +20,7 @@ App installation instructions for Mac with M1.
 	```
 4. Install rawpy from the source.
     ```bash
-    brew install llvm
+    brew install libraw cmake llvm
     sudo ln -s /opt/homebrew/opt/libomp/lib/libomp.dylib libomp.dylib
 
     git clone https://github.com/letmaik/rawpy
