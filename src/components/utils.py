@@ -1,9 +1,11 @@
 import rawpy
 import re
 import numpy as np
+import streamlit as st
 from PIL import Image
 
 
+@st.cache_data
 def read_raw(path: str) -> (np.array, tuple[int]):
     """
     Takes in raw image file and returns numpy array

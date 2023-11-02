@@ -7,44 +7,49 @@ from components.utils import (read_raw,
                               normalize_18pct_grey,
                               log_convert,
                               prepare_out)
+st.set_page_config(layout="wide")
 
 st.title("Gorgeous Converter")
+with st.expander("Upload raw image file"):
+    uploaded_file = st.file_uploader("Upload raw image file",
+                                     type=["NEF", "cr3"],
+                                     label_visibility="hidden",)
 
-uploaded_file = st.file_uploader("Upload a raw image file")
+with st.sidebar:
+    st.header("Image parameters")
 
-# variables
-BR_COEF: float = 1.2  # blur radius coefficient
-BS_COEF: float = 1.  # blur spread coefficient
-HALATION: float = 1.
+    with st.expander("Blur"):
+        BR_COEF = st.slider("Radius", min_value=.1, max_value=3., value=1.2, step=.1)
+        BS_COEF = st.slider("Spread", min_value=.1, max_value=2., value=1., step=.1)
+        HALATION = st.slider("Halation", min_value=.1, max_value=3., value=1., step=.1)
 
-# lab channels balance
-END_A_PLUS: float = 3.
-END_A_MINUS: float = 1.5
-END_B_PLUS: float = 2.
-END_B_MINUS: float = 4.
+    with st.expander("Saturation"):
+        SATURATION = st.slider("Saturation", min_value=0., max_value=1., value=.5, step=.05)
+        st.write("Lab channels balance")
+        END_A_PLUS = st.slider("__A+__", min_value=1., max_value=5., value=3.)
+        END_A_MINUS = st.slider("__A-__", min_value=1., max_value=5., value=1.5)
+        END_B_PLUS = st.slider("__B+__", min_value=1., max_value=5., value=2.)
+        END_B_MINUS = st.slider("__B-__", min_value=1., max_value=5., value=4.)
 
-# white balance correction coefficients
-WB_RED: float = 0.
-WB_GREEN: float = 0.
-WB_BLUE: float = 0.
+    with st.expander("White balance"):
+        WB_RED = st.slider("Red", min_value=0., max_value=.1, value=0., step=.01)
+        WB_GREEN = st.slider("Green", min_value=0., max_value=.1, value=0., step=.01)
+        WB_BLUE = st.slider("Blue", min_value=0., max_value=.1, value=0., step=.01)
 
-# saturation adjustment
-SATURATION: float = .5
+    with st.expander("Scene"):
+        SCENE_CONTRAST = st.slider("Scene contrast range", min_value=3, max_value=9, value=6, step=1)
+        # TO DO: ask @homelessalex about appropriate range here
+        EXPOSURE_SHIFT = st.slider("Exposure shift", min_value=-4., max_value=-2., value=-3., step=.05)
 
-# film adjustments
-SCENE_CONTRAST: int = 6
-EXPOSURE_SHIFT: int = -3
+    with st.expander("Print"):
+        PRINT_EXPOSURE = st.slider("Exposure", min_value=-.5, max_value=.5, value=-.1, step=.01)
+        PRINT_CONTRAST = st.slider("Contrast", min_value=1., max_value=5., value=3., step=.1)
 
-# final print settings
-PRINT_EXPOSURE: float = -0.1
-PRINT_CONTRAST: float = 4
-
-# grain settings
-AMPLIFY_GRAIN: float = .15
-AMPLIFY_GRAIN_MASK: float = 6.
+    with st.expander("Grain"):
+        AMPLIFY_GRAIN = st.slider("Amplify", min_value=0., max_value=1., value=.15, step=.05)
+        AMPLIFY_GRAIN_MASK = st.slider("Amplify mask", min_value=0., max_value=10., value=6., step=.5)
 
 if uploaded_file is not None:
-
     # read the file
     image = read_raw(uploaded_file)
     file_name = get_file_name(uploaded_file)
@@ -72,6 +77,10 @@ if uploaded_file is not None:
 
     # show and download the resulting jpeg
     st.image(img_bytes, caption="This is your image!")
+
+    with st.expander("Download options"):
+        st.write("Parameters here")
+
     st.download_button(
         label="Download image",
         data=img_bytes,

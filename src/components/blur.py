@@ -1,4 +1,5 @@
 import numpy as np
+import streamlit as st
 from scipy import signal
 
 
@@ -50,6 +51,7 @@ def blur_image(img: np.array, params: list[dict]) -> np.array:
     ])
 
 
+@st.cache_data
 def apply_blur(img: np.array, blur_radius_coef: float,
                blur_spread_coef: float, halation_coef: float):
 
