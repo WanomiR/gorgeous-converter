@@ -12,12 +12,12 @@ App installation instructions for Mac with M1.
    ```bash
    python3.10 -m venv venv
    ```
-4. Activate the environment, upgrade `pip`, and install dependencies.
+3. Activate the environment, upgrade `pip`, and install dependencies.
    ```bash
    source venv/bin/activate
    pip install --upgrade pip
    ```
-6. Install rawpy from the source.
+4. Install rawpy from the source.
     ```bash
     brew install libraw cmake llvm
     sudo ln -s /opt/homebrew/opt/libomp/lib/libomp.dylib libomp.dylib
@@ -27,15 +27,16 @@ App installation instructions for Mac with M1.
     pip install wheel numpy cython
     pip install .
     ```
-7. Return to the project's root directory and install other project rquirements.
-    ```bash
-    pip install -r requirements.txt
-    ```
 5. Remove rawpy directory after installation is finished.
     ```bash
    cd ../ && rm -rf rawpy/
    ```
-6. Open the `src` directory and run the main script with Streamlit.
+6. Return to the project's root directory and install other project rquirements.
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+7. Open the `src` directory and run the main script with Streamlit.
    ```bash
    cd src && streamlit run app.py
    ```
