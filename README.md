@@ -27,7 +27,7 @@ App installation instructions for Mac with M1.
     pip install wheel numpy cython
     pip install .
     ```
-5. Install other project rquirements.
+5. Return to the project's root directory and install other project rquirements.
     ```bash
     pip install -r requirements.txt
     ```
