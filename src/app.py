@@ -13,7 +13,7 @@ st.set_page_config(layout="wide")
 st.title("Gorgeous Converter")
 with st.expander("Upload raw image file"):
     uploaded_file = st.file_uploader("Upload raw image file",
-                                     type=["NEF", "cr3"],
+                                     type=["NEF", "cr3", "cr2", "dng", "tiff"],
                                      label_visibility="hidden",)
 
 with st.sidebar:
