@@ -1,5 +1,6 @@
 import streamlit as st
 from io import BytesIO
+import numpy as np
 from components.blur import apply_blur
 from components.film import apply_film
 from components.utils import (read_raw,
@@ -20,34 +21,34 @@ with st.sidebar:
 
     with st.expander("Blur"):
         BR_COEF = st.slider("Radius", min_value=.1, max_value=3., value=1.2, step=.1)
-        BS_COEF = st.slider("Spread", min_value=.1, max_value=2., value=1., step=.1)
+        BS_COEF = st.slider("Spread", min_value=.1, max_value=3., value=1., step=.1)
         HALATION = st.slider("Halation", min_value=.1, max_value=3., value=1., step=.1)
-
-    with st.expander("Saturation"):
-        SATURATION = st.slider("Saturation", min_value=0., max_value=1., value=.5, step=.05)
-        st.write("Lab channels balance")
-        END_A_PLUS = st.slider("__A+__", min_value=1., max_value=5., value=3.)
-        END_A_MINUS = st.slider("__A-__", min_value=1., max_value=5., value=1.5)
-        END_B_PLUS = st.slider("__B+__", min_value=1., max_value=5., value=2.)
-        END_B_MINUS = st.slider("__B-__", min_value=1., max_value=5., value=4.)
 
     with st.expander("White balance"):
         WB_RED = st.slider("Red", min_value=0., max_value=.1, value=0., step=.01)
         WB_GREEN = st.slider("Green", min_value=0., max_value=.1, value=0., step=.01)
         WB_BLUE = st.slider("Blue", min_value=0., max_value=.1, value=0., step=.01)
 
-    with st.expander("Scene"):
-        SCENE_CONTRAST = st.slider("Scene contrast range", min_value=3, max_value=9, value=6, step=1)
-        # TO DO: ask @homelessalex about appropriate range here
-        EXPOSURE_SHIFT = st.slider("Exposure shift", min_value=-4., max_value=-2., value=-3., step=.05)
+    with st.expander("Film"):
+        SCENE_CONTRAST = st.slider("Scene contrast range (ev)", min_value=3, max_value=9, value=4, step=1)
+        EXPOSURE_SHIFT = st.slider("Exposure shift (ev)", min_value=-3., max_value=3., value=0., step=.1)
 
     with st.expander("Print"):
-        PRINT_EXPOSURE = st.slider("Exposure", min_value=-.5, max_value=.5, value=-.1, step=.01)
-        PRINT_CONTRAST = st.slider("Contrast", min_value=1., max_value=5., value=3., step=.1)
+        PRINT_EXPOSURE = st.slider("Exposure", min_value=-.5, max_value=.5, value=0., step=.01)
+        PRINT_CONTRAST = st.slider("Contrast", min_value=1., max_value=5., value=2., step=.1)
+        SATURATION = np.log(st.slider("Saturation", min_value=0., max_value=1., value=.65, step=.05) + 1)
 
     with st.expander("Grain"):
         AMPLIFY_GRAIN = st.slider("Amplify", min_value=0., max_value=1., value=.15, step=.05)
         AMPLIFY_GRAIN_MASK = st.slider("Amplify mask", min_value=0., max_value=10., value=6., step=.5)
+
+    st.header("Advanced")
+    with st.expander("Lab channels compression rate"):
+        END_A_PLUS = st.slider("__A+__", min_value=1., max_value=5., value=2.63)
+        END_A_MINUS = st.slider("__A-__", min_value=1., max_value=5., value=4.9)
+        END_B_PLUS = st.slider("__B+__", min_value=1., max_value=5., value=2.41)
+        END_B_MINUS = st.slider("__B-__", min_value=1., max_value=5., value=3.3)
+
 
 if uploaded_file is not None:
     # read the file
