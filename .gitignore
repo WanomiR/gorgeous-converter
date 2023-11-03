@@ -1,6 +1,8 @@
 *.nef
 *.cr3
 *.npy
+*.cr2
+*.dylib
 
 .idea
 .vscode
