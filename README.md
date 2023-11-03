@@ -16,7 +16,6 @@ App installation instructions for Mac with M1.
 	```bash
 	source venv/bin/activate
 	pip install --upgrade pip
-	pip install -r requirements.txt
 	```
 4. Install rawpy from the source.
     ```bash
@@ -27,6 +26,10 @@ App installation instructions for Mac with M1.
     cd rawpy
     pip install wheel numpy cython
     pip install .
+    ```
+5. Install other project rquirements.
+    ```bash
+    pip install -r requirements.txt
     ```
 5. Remove rawpy directory after installation is finished.
     ```bash
