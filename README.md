@@ -35,4 +35,7 @@ App installation instructions for Mac with M1.
     ```bash
    cd ../ && rm -rf rawpy/
    ```
-6. 
+6. Open the `src` directory and run the main script with Streamlit.
+   ```bash
+   cd src && streamlit run app.py
+   ```
